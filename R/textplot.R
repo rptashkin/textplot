@@ -1,4 +1,4 @@
-
+#' @export
 textplot <- function(object, halign="center", valign="center", cex, ... )
   UseMethod('textplot')
 
@@ -18,14 +18,15 @@ textplot.default <- function(object,
   textplot.character(object, halign,  valign, cex, ...)
 }
 
-
+#' @export
 textplot.data.frame <- function(object,
                              halign=c("center","left","right"),
                              valign=c("center","top","bottom"),
                              cex, ... )
-    textplot.matrix(object, halign, valign, cex, ... )
+#' @export
+textplot.matrix(object, halign, valign, cex, ... )
 
-
+#' @export
 textplot.matrix <- function(object,
                             halign=c("center","left","right"),
                             valign=c("center","top","bottom"),
@@ -53,14 +54,14 @@ textplot.matrix <- function(object,
       stop("Dimensions of 'col.data' do not match dimensions of 'object'.")
 
   if(length(col.rownames)==1)
-      col.rownames <- rep(col.rownames, nrow(object))      
+      col.rownames <- rep(col.rownames, nrow(object))
 
   if(length(col.colnames)==1)
     if(show.rownames)
       col.colnames <- rep(col.colnames, ncol(object)+1)
     else
       col.colnames <- rep(col.colnames, ncol(object))
-  
+
   halign=match.arg(halign)
   valign=match.arg(valign)
 
@@ -86,7 +87,7 @@ textplot.matrix <- function(object,
     {
       object <- cbind( rownames(object), object )
       col.data <- cbind( col.rownames, col.data )
-      
+
     }
   if( show.colnames )
     {
@@ -175,6 +176,7 @@ textplot.matrix <- function(object,
   par(opar)
 }
 
+#' @export
 textplot.character <- function (object,
                                 halign = c("center", "left", "right"),
                                 valign = c("center", "top", "bottom"),
